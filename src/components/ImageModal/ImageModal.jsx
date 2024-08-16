@@ -1,6 +1,6 @@
 import Modal from 'react-modal';
-import css from './ImageModal.module.css';
-Modal.setAppElement('#root');
+import css from "./ImageModal.module.css";
+
 
 const customStyles = {
   content: {
@@ -17,20 +17,8 @@ const customStyles = {
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
 };
-const ImageModal = ({ modalIsOpen, closeModal, currentPhoto }) => {
-  useEffect(() => {
-    const handleKeyDown = (event) => {
-      if (event.code === "Escape") {
-        onCloseModal();
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [onCloseModal]);
+const ImageModal = ({ modalIsOpen, closeModal, src, alt }) => {
+  
   
     return (
     <Modal
@@ -38,12 +26,13 @@ const ImageModal = ({ modalIsOpen, closeModal, currentPhoto }) => {
       isOpen={modalIsOpen}
       onRequestClose={closeModal}
       contentLabel="Example Modal"
-      shouldCloseOnOverlayClick={true}
+      // shouldCloseOnOverlayClick={true}
     >
       <img
         className={css.photo}
-        src={currentPhoto.url}
-        alt={currentPhoto.alt}
+        // src={currentPhoto.url}
+        //   alt={currentPhoto.alt}
+          src={src} alt={alt}
       />
     </Modal>
   );

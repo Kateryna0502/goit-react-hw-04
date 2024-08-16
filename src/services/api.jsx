@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const requestPhotos = async (query, pageNumber) => {
+const requestPhotos = async (query, pageNumber) => {
     const params = {
     query: query,
     page: pageNumber,
