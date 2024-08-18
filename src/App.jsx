@@ -82,6 +82,7 @@ const App = () => {
         <ImageGallery
             photos={photos}
             
+            
           setCurrentPhoto={setCurrentPhoto}
           openModal={openModal}
         />

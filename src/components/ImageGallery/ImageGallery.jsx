@@ -11,9 +11,9 @@ const ImageGallery = ({ photos, openModal, setCurrentPhoto,  }) => {
               <ImageCard
                 openModal={openModal}
                 small={photo.urls.small}
-                alt={photo.alt_description}
+                alt={photo.description}
                 likes={photo.likes}
-                title={photo.alt_description}
+                description={photo.description}
                 urls={photo.urls}
                 setCurrentPhoto={setCurrentPhoto}
               />
