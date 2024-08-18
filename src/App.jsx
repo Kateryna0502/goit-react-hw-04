@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
-import SearchBar from "./components/SearchBar/SearchBar";
+import { useState, useEffect, useMemo } from "react";
+import SearchBar from "./components/SearchBar/SearchBar.jsx";
 import ImageGallery from "./components/ImageGallery/ImageGallery.jsx";
-import ImageModal from "./components/ImageModal/ImageModal";
-import Loader from "./components/Loader/Loader";
+import ImageModal from "./components/ImageModal/ImageModal.jsx";
+import Loader from "./components/Loader/Loader.jsx";
 import ErrorMessage from "./components/ErrorMessage/ErrorMessage.jsx";
-import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
+import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn.jsx";
 import requestPhotos from "./services/api.jsx";
 // import toast, { Toaster } from "react-hot-toast";
 
@@ -16,6 +16,7 @@ const App = () => {
   const [inputValue, setInputValue] = useState(null);
   const [error, setError] = useState(false);
   const [totalPages, setTotalPages] = useState(1);
+  const [showBtn, setShowBtn] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [currentPhoto, setCurrentPhoto] = useState({
     url: '',
@@ -50,13 +51,22 @@ const App = () => {
   const onSubmit = evt => {
     const form = evt.currentTarget;
     setCurrentPage(1);
+    setShowBtn(false);
     setInputValue(form.elements.query.value);
     form.reset();
   };
 
-  const onLoadMore = () => {
-    setCurrentPage(currentPage + 1);
-  };
+  // const onLoadMore = () => {
+  //   setCurrentPage(currentPage + 1);
+  // };
+
+  const handleLoadMore = () => {
+		setCurrentPage(currentPage + 1);
+	};
+
+  const isActive = useMemo(() => currentPage === totalPages, [currentPage, totalPages]);
+  
+  
 
   function openModal() {
     setModalIsOpen(true);
@@ -87,6 +97,7 @@ const App = () => {
           openModal={openModal}
         />
       )}
+     
       {totalPages < currentPage && (
         <p
           style={{
@@ -94,7 +105,7 @@ const App = () => {
             margin: 'auto',
             width: '500px',
             display: 'flex',
-            margin: 'auto',
+            
             justifyContent: 'center',
           }}
         >
@@ -108,8 +119,10 @@ const App = () => {
       )}
       {isLoading && <Loader />}
       {Array.isArray(photos) && photos.length > 0 && !error && (
-        <LoadMoreBtn onLoadMore={onLoadMore} />
+        <LoadMoreBtn handleLoadMore={handleLoadMore} isActive={isActive} />
       )}
+      
+			
       {modalIsOpen && (
         <ImageModal
           modalIsOpen={modalIsOpen}
@@ -120,6 +133,7 @@ const App = () => {
     </div>
   );
 };
+
 export default App;
 
 

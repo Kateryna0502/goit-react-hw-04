@@ -1,11 +1,11 @@
 import css from "./LoadMoreBtn.module.css";
 
-const LoadMoreBtn = ({ handleClick }) => {
-  return (
-    <button onClick={handleClick} className={css.loadMoreBtn} type="button">
-      Load More
-    </button>
-  );
+const LoadMoreBtn = ({ handleLoadMore, isActive }) => {
+	return (
+		<button onClick={handleLoadMore} type='button' disabled={isActive}>
+			Load more
+		</button>
+	);
 };
 
 export default LoadMoreBtn;
