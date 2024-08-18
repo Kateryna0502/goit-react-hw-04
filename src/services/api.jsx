@@ -8,6 +8,7 @@ const requestPhotos = async (query, pageNumber) => {
     per_page: 20,
   };
   const { data } = await axios.get("https://api.unsplash.com/search/photos?client_id=lD1P932jYFcxUcvysE1bhjA5NVgfVCLU2ML6haokAUE",
+  
     {
       params,
       headers: {
@@ -15,7 +16,9 @@ const requestPhotos = async (query, pageNumber) => {
       },
     }
   );
+  // console.log (data)
   return data;
+  
 };
 
 
