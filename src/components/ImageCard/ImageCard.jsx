@@ -2,7 +2,8 @@ import css from "./ImageCard.module.css";
 
 const ImageCard = ({ title, urls, likes, openModal, setCurrentPhoto }) => {
   const handleClick = () => {
-    setCurrentPhoto({ url: urls.full, alt: title });
+    setCurrentPhoto({ url: urls.regular, alt: title });
+    console.log(urls.regular, title)
     openModal();
   };
 

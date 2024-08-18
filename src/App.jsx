@@ -80,7 +80,8 @@ const App = () => {
         <ErrorMessage />
       ) : (
         <ImageGallery
-          photos={photos}
+            photos={photos}
+            
           setCurrentPhoto={setCurrentPhoto}
           openModal={openModal}
         />

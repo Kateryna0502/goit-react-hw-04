@@ -1,7 +1,7 @@
 import  css from "./ImageGallery.module.css";
 import ImageCard from "../ImageCard/ImageCard.jsx";
 
-const ImageGallery = ({ photos, openModal, setCurrentPhoto }) => {
+const ImageGallery = ({ photos, openModal, setCurrentPhoto,  }) => {
   return (
     <ul className={css.photoList}>
       {Array.isArray(photos) &&
@@ -11,9 +11,9 @@ const ImageGallery = ({ photos, openModal, setCurrentPhoto }) => {
               <ImageCard
                 openModal={openModal}
                 small={photo.urls.small}
-                alt={photo.description}
+                alt={photo.alt_description}
                 likes={photo.likes}
-                description={photo.description}
+                title={photo.alt_description}
                 urls={photo.urls}
                 setCurrentPhoto={setCurrentPhoto}
               />
