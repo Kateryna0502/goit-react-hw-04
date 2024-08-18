@@ -1,8 +1,10 @@
 import css from "./ErrorMessage.module.css";
 
-const ErrorMessage = () => {
+const ErrorMessage = ({ children }) => {
   return (
-    <p className={css.errorText}>Something went wrong. Please try later!</p>
+    <div className={css.errorMessage}>
+      <p>{children}</p>
+    </div>
   );
 };
 

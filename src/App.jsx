@@ -28,6 +28,7 @@ const App = () => {
       try {
         setError(false);
         setIsLoading(true);
+        
         if (inputValue === null) return;
         const data = await requestPhotos(query, currentPage);
         if (totalPages < currentPage) return;
@@ -50,6 +51,7 @@ const App = () => {
 
   const onSubmit = evt => {
     const form = evt.currentTarget;
+    setPhotos(null);
     setCurrentPage(1);
     setShowBtn(false);
     setInputValue(form.elements.query.value);
@@ -66,7 +68,11 @@ const App = () => {
 
   const isActive = useMemo(() => currentPage === totalPages, [currentPage, totalPages]);
   
-  
+  // const handleQuery = (newQuery) => {
+	// 	setQueryValue(newQuery);
+	// 	setGallery([]);
+	// 	setPage(1);
+	// };
 
   function openModal() {
     setModalIsOpen(true);
@@ -122,7 +128,11 @@ const App = () => {
         <LoadMoreBtn handleLoadMore={handleLoadMore} isActive={isActive} />
       )}
       
-			
+			{error && (
+        <ErrorMessage>
+          Whoops, something went wrong! Please try reloading this page!
+        </ErrorMessage>
+      )}
       {modalIsOpen && (
         <ImageModal
           modalIsOpen={modalIsOpen}
