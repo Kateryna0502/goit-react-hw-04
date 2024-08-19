@@ -58,22 +58,14 @@ const App = () => {
     form.reset();
   };
 
-  // const onLoadMore = () => {
-  //   setCurrentPage(currentPage + 1);
-  // };
-
+  
   const handleLoadMore = () => {
 		setCurrentPage(currentPage + 1);
 	};
 
   const isActive = useMemo(() => currentPage === totalPages, [currentPage, totalPages]);
   
-  // const handleQuery = (newQuery) => {
-	// 	setQueryValue(newQuery);
-	// 	setGallery([]);
-	// 	setPage(1);
-	// };
-
+  
   function openModal() {
     setModalIsOpen(true);
   }
@@ -92,31 +84,23 @@ const App = () => {
   return (
     <div>
       <SearchBar onSubmit={onSubmit} />
-      {error ? (
-        <ErrorMessage />
-      ) : (
+      {photos !== null &&  (
         <ImageGallery
-            photos={photos}
-            
-            
+          photos={photos}
           setCurrentPhoto={setCurrentPhoto}
           openModal={openModal}
         />
       )}
-     
-      {totalPages < currentPage && (
+        {totalPages < currentPage && (
         <p
           style={{
             color: 'red',
             margin: 'auto',
             width: '500px',
             display: 'flex',
-            
             justifyContent: 'center',
-          }}
-        >
-          За вашим запитом не знайдено більше фотографій
-        </p>
+          }} >
+          За вашим запитом не знайдено більше фотографій </p>
       )}
       {Array.isArray(photos) && photos.length === 0 && (
         <p style={{ color: 'red', margin: 'auto', width: '500px' }}>
