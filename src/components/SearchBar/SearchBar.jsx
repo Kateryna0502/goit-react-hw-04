@@ -1,48 +1,3 @@
-
-
-//   const SearchBar = ({ onSubmit }) => {
-  
-// 	const handleSubmit = (evt) => {
-//     evt.preventDefault();
-//     const form = evt.target;
-// 		const topic = form.elements.topic.value;
-    
-// 		// Якщо текстове поле порожнє, виводимо повідомлення
-// 		// і припиняємо виконання функції.
-// 		if(form.elements.topic.value.trim() === "") {
-// 			toast.error("Enter a valid value!", {
-//         duration: 4000,
-//         position: "top-right",
-//       });
-// 				}
-
-// 		// У протилежному випадку викликаємо пропс
-// 		// і передаємо йому значення поля
-// 		onSubmit(topic);
-//     form.reset();
-//   };
-
-//   return (
-//     <header className={css.wrapper}>
-//       <form onSubmit={handleSubmit}>
-//         <Toaster />
-//         <div className={css.formWrapper}>
-//           <button type="submit" className={css.searchBtn}>
-//             <CiZoomIn />
-//             {/* <IoIosSearch /> */}
-//           </button>
-//           <input
-//             className={css.textInput}
-//             type="text"
-//             name="searchingValue"
-//             placeholder="Search photos and images"
-//           />
-//         </div>
-//       </form>
-//     </header>
-       
-//   );
-// };
 import { useState } from 'react';
 import css from './SearchBar.module.css';
 import toast, { Toaster } from 'react-hot-toast';
@@ -68,6 +23,7 @@ const SearchBar = ({ onSubmit }) => {
   return (
     <header className={css.header}>
       <form onSubmit={handleSubmit} className={css.form}>
+        
         <button className={css.btn} type="submit" onClick={notify}>
           <FaSearch className={css.searchIcon} />
         </button>

@@ -6,7 +6,7 @@ import Loader from "./components/Loader/Loader.jsx";
 import ErrorMessage from "./components/ErrorMessage/ErrorMessage.jsx";
 import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn.jsx";
 import requestPhotos from "./services/api.jsx";
-// import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from 'react-hot-toast';
 
 
 const App = () => {
@@ -108,7 +108,7 @@ const App = () => {
         </p>
       )}
       {isLoading && <Loader />}
-      {Array.isArray(photos) && photos.length > 0 && !error && (
+      {Array.isArray(photos) && photos.length > 0 && !error && totalPages > currentPage && (
         <LoadMoreBtn handleLoadMore={handleLoadMore} isActive={isActive} />
       )}
       
@@ -134,106 +134,3 @@ export default App;
 
 
 
-// const App = () => {
-//   const [images, setImages] = useState(null);
-//   const [Loading, setLoading] = useState(false);
-//   const [error, setError] = useState(false);
-//   const [searchValue, setSearchValue] = useState("");
-//   const [modalIsOpen, setModalIsOpen] = useState(false);
-//   const [pageNumber, setPageNumber] = useState(1);
-//   const [totalPages, setTotalPages] = useState(0);
-//   const [currentImage, setCurrentImage] = useState({
-//     url: "",
-//     alt: "",
-//   });
-
-//   function openModal() {
-//     setModalIsOpen(true);
-//   }
-
-//   function closeModal() {
-//     setModalIsOpen(false);
-//   }
-//   useEffect(() => {
-//     const handleKeyDown = (event) => {
-//       if (event.code === "Escape") {
-//         closeModal();
-//       }
-//     };
-
-//     window.addEventListener("keydown", handleKeyDown);
-
-//     return () => {
-//       window.removeEventListener("keydown", handleKeyDown);
-//     };
-//   }, [closeModal]);
-
-//   useEffect(() => {
-//     if (searchValue.trim() === "") return;
-//     const getPhotos = async (value) => {
-//       setError(false);
-//       setLoading(true);
-//       try {
-//         const data = await requestPhotos(value, pageNumber);
-//         setImages((items) => {
-//           if (items !== null) {
-//             return [...items, ...data.results];
-//           }
-//           return data.results;
-//         });
-
-//         setTotalPages(data.total.pages);
-//         if (data.total.pages === 0) {
-//           toast.error("Nothing was found for your request", {
-//             duration: 4000,
-//             position: "top-right",
-//           });
-//           return;
-//         }
-//       } catch(error) {
-//         setError(true);
-//       } finally {
-//         setLoading(false);
-//       }
-//     };
-//     getPhotos(searchValue);
-//   }, [searchValue, pageNumber]);
-
-//   const handleSubmit = (userValue) => {
-//     setImages(null);
-//     setPageNumber(1);
-//     setSearchValue(userValue);
-//   };
-
-//   return (
-//     <div>
-//       <SearchBar onSubmit={handleSubmit} />
-//       {images !== null && (
-//         <ImageGallery
-//           images={images}
-//           openModal={openModal}
-//           setCurrentImage={setCurrentImage}
-//         />
-//       )}
-//       <ImageModal
-//         modalIsOpen={modalIsOpen}
-//         closeModal={closeModal}
-//         currentImage={currentImage}
-//       />
-//       {Loading && <Loader />}
-//       {error && <ErrorMessage />}
-//       {totalPages > pageNumber && (
-//         <LoadMoreBtn
-//           handleClick={() => {
-//             setPageNumber(pageNumber + 1);
-//           }}
-//         />
-//       )}
-//     </div>
-//   );
-// };
-
-
-
-
-// Access Key: lD1P932jYFcxUcvysE1bhjA5NVgfVCLU2ML6haokAUE

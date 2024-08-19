@@ -1,15 +1,10 @@
 import css from "./ImageCard.module.css";
 
 const ImageCard = ({ urls, alt, likes, openModal, setCurrentPhoto }) => {
-  console.log(urls, alt, likes);
-  const handleClick = () => {
+    const handleClick = () => {
     setCurrentPhoto({ url: urls.regular, alt: alt });
-    
-    
-    openModal();
-    
-
-  };
+     openModal();
+      };
 
   return (
     <div onClick={handleClick} className={css.wrapper}>
